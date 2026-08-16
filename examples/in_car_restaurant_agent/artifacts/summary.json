@@ -1,0 +1,112 @@
+[
+  {
+    "scenario": "happy_path",
+    "status": "success",
+    "task_completed": true,
+    "reservation_created": true,
+    "navigation_started": true,
+    "unique_reservations": 1,
+    "tool_calls": 6,
+    "retries": 0,
+    "total_duration_ms": 58,
+    "message": "已为 5 人预订蜀香小院包间，预计 19:10 到达，导航已开始。",
+    "selected_restaurant": "蜀香小院",
+    "reservation": {
+      "reservation_id": "booking_001",
+      "restaurant_id": "rest_001",
+      "party_size": 5,
+      "reservation_time": "2026-08-16T19:10+08:00",
+      "room_type": "private_room",
+      "status": "confirmed",
+      "deduplicated": false
+    },
+    "navigation": {
+      "navigation_id": "nav_001",
+      "destination_id": "rest_001",
+      "route_id": "route_rest_001",
+      "status": "started"
+    }
+  },
+  {
+    "scenario": "fallback_restaurant",
+    "status": "success",
+    "task_completed": true,
+    "reservation_created": true,
+    "navigation_started": true,
+    "unique_reservations": 1,
+    "tool_calls": 8,
+    "retries": 0,
+    "total_duration_ms": 73,
+    "message": "已为 5 人预订锦城里包间，预计 19:15 到达，导航已开始。",
+    "selected_restaurant": "锦城里",
+    "reservation": {
+      "reservation_id": "booking_001",
+      "restaurant_id": "rest_002",
+      "party_size": 5,
+      "reservation_time": "2026-08-16T19:15+08:00",
+      "room_type": "private_room",
+      "status": "confirmed",
+      "deduplicated": false
+    },
+    "navigation": {
+      "navigation_id": "nav_001",
+      "destination_id": "rest_002",
+      "route_id": "route_rest_002",
+      "status": "started"
+    }
+  },
+  {
+    "scenario": "reservation_retry",
+    "status": "success",
+    "task_completed": true,
+    "reservation_created": true,
+    "navigation_started": true,
+    "unique_reservations": 1,
+    "tool_calls": 7,
+    "retries": 1,
+    "total_duration_ms": 75,
+    "message": "已为 5 人预订蜀香小院包间，预计 19:10 到达，导航已开始。",
+    "selected_restaurant": "蜀香小院",
+    "reservation": {
+      "reservation_id": "booking_001",
+      "restaurant_id": "rest_001",
+      "party_size": 5,
+      "reservation_time": "2026-08-16T19:10+08:00",
+      "room_type": "private_room",
+      "status": "confirmed",
+      "deduplicated": true
+    },
+    "navigation": {
+      "navigation_id": "nav_001",
+      "destination_id": "rest_001",
+      "route_id": "route_rest_001",
+      "status": "started"
+    }
+  },
+  {
+    "scenario": "user_rejects",
+    "status": "cancelled",
+    "task_completed": false,
+    "reservation_created": false,
+    "navigation_started": false,
+    "unique_reservations": 0,
+    "tool_calls": 4,
+    "retries": 0,
+    "total_duration_ms": 32,
+    "message": "已取消，本次没有预订，也没有启动导航。",
+    "selected_restaurant": "蜀香小院"
+  },
+  {
+    "scenario": "location_denied",
+    "status": "needs_input",
+    "task_completed": false,
+    "reservation_created": false,
+    "navigation_started": false,
+    "unique_reservations": 0,
+    "tool_calls": 1,
+    "retries": 0,
+    "total_duration_ms": 7,
+    "message": "无法获取当前位置，请授权定位或告诉我您所在的位置。",
+    "error_code": "permission_denied"
+  }
+]
