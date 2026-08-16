@@ -1,5 +1,14 @@
 # Tools
 
-Defines tool schemas, registration, discovery, validation, invocation, and result normalization.
+The minimal registry exposes six sandbox tools:
 
-Tool descriptions and permission boundaries are treated as part of the runtime contract.
+- `get_current_location`
+- `search_restaurants`
+- `get_route`
+- `check_reservation_availability`
+- `create_reservation`
+- `start_navigation`
+
+The last two are declared as side-effecting tools. They require a matching
+confirmation token, emit explicit side-effect events, and use an idempotency
+key to prevent duplicate reservations after an uncertain timeout.
