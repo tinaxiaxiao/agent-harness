@@ -4,6 +4,37 @@
 
 Agent Harness provides the infrastructure around a model: state, context, memory, planning, tools, perception, execution, and extension points. The goal is to make agent behavior easier to compose, inspect, and improve without coupling every experiment to one monolithic application.
 
+## Executable vehicle demo
+
+The first vertical slice turns this Chinese voice request into a safe,
+observable workflow:
+
+> 帮我就近找家有五人包间的川菜馆，导航过去并帮我同步先预定下包间
+
+The agent retrieves a synthetic vehicle location, searches nearby Sichuan
+restaurants, checks routing and private-room availability concurrently, asks
+for confirmation, creates an idempotent reservation, and starts navigation.
+
+```bash
+python3 -m examples.in_car_restaurant_agent \
+  --scenario happy_path \
+  --trace /tmp/happy-path.jsonl
+```
+
+Run all five reproducible scenarios and regenerate the evidence:
+
+```bash
+python3 scripts/run_week_one.py
+```
+
+![Week-one sandbox results](examples/in_car_restaurant_agent/artifacts/week-one-results.svg)
+
+The generated traces conform to
+[Agent Trace Schema v0.1.0](https://github.com/tinaxiaxiao/agent-evaluation/blob/main/traces/schema/v0.1.0/trace.schema.json).
+All locations, restaurants, routes, confirmations, and reservations in this
+demo are synthetic. The runtime execution, concurrency, failure recovery,
+durations, and trace events are real.
+
 ## Why this repository exists
 
 An agent is more than a model call. Useful systems need clear contracts for what the agent knows, how it decides, what it can do, and how each action is observed. This repository keeps those responsibilities separate while making them work as one runtime.
@@ -34,10 +65,10 @@ agent-harness/
 
 ## Roadmap
 
-- [ ] Define the minimal runtime and event model
-- [ ] Specify context, memory, and tool interfaces
-- [ ] Add one complete reference agent in `examples/`
-- [ ] Emit a stable trace format for evaluation
+- [x] Define the minimal runtime and event model
+- [ ] Specify context and memory interfaces
+- [x] Add one complete reference agent in `examples/`
+- [x] Emit a versioned trace format for evaluation
 - [ ] Add plugin discovery and lifecycle hooks
 
 ## Relationship to Agent Evaluation
@@ -46,4 +77,6 @@ Agent Harness builds and runs agents. [**Agent Evaluation**](https://github.com/
 
 ## Status
 
-Early design and scaffolding. Interfaces will change while the first end-to-end example is built.
+The first end-to-end sandbox example is executable and tested. Interfaces are
+still pre-1.0 and will evolve as real map, speech, and reservation adapters are
+introduced.
