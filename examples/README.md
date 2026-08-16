@@ -1,5 +1,11 @@
 # Examples
 
-End-to-end reference agents live here while the project is young.
+## In-car restaurant agent
 
-Each example should be runnable, explain its architecture, and link to a matching evaluation when available.
+[`in_car_restaurant_agent`](in_car_restaurant_agent/) is the first executable
+reference agent. It handles one vehicle voice request end to end using a
+synthetic environment and emits evaluation-ready JSONL traces.
+
+The example covers concurrent read-only tools, user confirmation before side
+effects, idempotent booking recovery, navigation, privacy labels, and five
+reproducible outcomes.
